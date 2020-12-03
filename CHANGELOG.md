@@ -17,6 +17,7 @@ project.
 - Templates and a guide to shape the different issues that the community may
 need to address.
 - A GNU GPLv3 license.
+- A README with basic project information.
 
 [Keep a Changelog]: https://keepachangelog.com/en/1.0.0/
 [Semantic Versioning]: https://semver.org/spec/v2.0.0.html

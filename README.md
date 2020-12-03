@@ -18,7 +18,7 @@ If you've tried the project and found it useful, consider making a small
 donation to its creators.
 
 <a href="https://www.buymeacoffee.com/inigochoa" target="_blank">
-    <img src="https://cdn.buymeacoffee.com/buttons/v2/arial-red.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" >
+    <img src="https://cdn.buymeacoffee.com/buttons/v2/arial-red.png" alt="Buy Me A Coffee"  height="60" width="217">
 </a>
 
 [GitHub license badge]: https://img.shields.io/github/license/inigochoa/porg?style=flat-square

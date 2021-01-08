@@ -19,6 +19,7 @@ need to address.
 - A GNU GPLv3 license.
 - A README with basic project information.
 - A installer script
+- ASCII logo
 
 [Keep a Changelog]: https://keepachangelog.com/en/1.0.0/
 [Semantic Versioning]: https://semver.org/spec/v2.0.0.html

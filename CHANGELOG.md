@@ -22,6 +22,7 @@ need to address.
 - A installer script
 - ASCII logo
 - Version line after ASCII logo
+- getopts section for main command
 
 [Keep a Changelog]: https://keepachangelog.com/en/1.0.0/
 [Semantic Versioning]: https://semver.org/spec/v2.0.0.html

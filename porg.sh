@@ -25,3 +25,8 @@ __version() {
 
 __logo
 __version
+
+while getopts "" option; do
+  case $option in
+  esac
+done

@@ -19,6 +19,14 @@ curl -s https://raw.githubusercontent.com/inigochoa/porg/master/installer.sh | s
 > the porg binary. If you > don't add it, porg will work but the directory
 > change may have unexpected behavior.
 
+## Usage
+
+### Available options
+
+| Option | Action |
+|--------|--------|
+| -h     | Print help message |
+
 ## Contributing
 
 Any kind of contribution is appreciated and welcome. We have a guide on how to

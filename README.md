@@ -6,6 +6,19 @@
 **porg**, portmanteau for Project Organizer, is a bash terminal application to
 simplify moving between projects and opening them with an IDE.
 
+## :rocket: Installation
+
+We offer a simple installer that enables the `porg` command so you can use it
+from anywhere. It is as simple as launching the following command:
+
+```console
+curl -s https://raw.githubusercontent.com/inigochoa/porg/master/installer.sh | sudo bash
+```
+
+> Once the installation is finished, you are recommended to include an alias to
+> the porg binary. If you > don't add it, porg will work but the directory
+> change may have unexpected behavior.
+
 ## Contributing
 
 Any kind of contribution is appreciated and welcome. We have a guide on how to

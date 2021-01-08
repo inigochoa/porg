@@ -1,14 +1,19 @@
 #!/bin/bash
 
 PROJECT_NAME="porg"
+PROJECT_RAW_PATH="https://raw.githubusercontent.com/inigochoa/$PROJECT_NAME"
 PROJECT_RELEASE_DATE="Jan 08 2021"
 PROJECT_VERSION="0.1.0"
+LATEST_VERSION=""
 
 BC_CLEAR=$'\e[49m'
 BC_RED=$'\e[101m'
+BC_YELLOW=$'\e[103m'
 EOL_CL=$'\x1B[K'
+TC_BLACK=$'\e[30m'
 TC_GREEN=$'\e[32m'
 TC_CLEAR=$'\e[39m'
+TC_YELLOW=$'\e[33m'
 
 __error_message() {
   echo
@@ -17,12 +22,46 @@ __error_message() {
   echo "$EOL_CL$BC_CLEAR"
 }
 
+__get_latest_version() {
+  local appversion_file
+  appversion_file="$PROJECT_RAW_PATH/main/APPVERSION?$(date +%s)"
+
+  LATEST_VERSION="$(curl --connect-timeout 5 -s "$appversion_file")"
+}
+
 __help() {
   echo
   echo "Usage: $PROJECT_NAME [-h]"
   echo
   echo "Options:"
   echo "h     Print this help message"
+}
+
+__info_message() {
+  echo
+  echo -e "$BC_YELLOW$EOL_CL"
+
+  for line in "$@"; do
+    echo -e "$TC_BLACK >>> $line$TC_CLEAR$EOL_CL"
+  done
+
+  echo -e "$EOL_CL$BC_CLEAR"
+}
+
+__is_update_available() {
+  __get_latest_version
+
+  if [[ ! $LATEST_VERSION ]]; then
+    return
+  fi
+
+  if [ "$PROJECT_VERSION" = "$LATEST_VERSION" ]; then
+    return
+  fi
+
+  if [ "$PROJECT_VERSION" = "`echo -e "$PROJECT_VERSION\n$LATEST_VERSION" | sort -V | head -n1`" ]; then
+    __info_message "Version $LATEST_VERSION of $PROJECT_NAME is available. Please, run the following command to update:" "curl -s $PROJECT_RAW_PATH/master/installer.sh | sudo bash"
+  fi
 }
 
 __logo() {
@@ -43,6 +82,7 @@ __version() {
 
 __logo
 __version
+__is_update_available
 
 while getopts ":h" option; do
   case $option in

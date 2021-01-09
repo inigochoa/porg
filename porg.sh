@@ -9,6 +9,7 @@ PROJECT_VERSION="0.2.0"
 LATEST_VERSION=""
 
 declare -A BASE
+declare -A EDITORS
 declare -A PROJECTS
 
 BC_CLEAR=$'\e[49m'
@@ -19,6 +20,12 @@ TC_BLACK=$'\e[30m'
 TC_GREEN=$'\e[32m'
 TC_CLEAR=$'\e[39m'
 TC_YELLOW=$'\e[33m'
+
+__add_editor_if_available() {
+  if [[ $(which "$1") ]]; then
+    EDITORS["$2"]="$1"
+  fi
+}
 
 __error_message() {
   echo
@@ -96,6 +103,13 @@ __logo() {
   echo -e "$TC_CLEAR"
 }
 
+__set_editors() {
+  __add_editor_if_available "atom" "Atom"
+  __add_editor_if_available "subl" "Sublime text"
+  __add_editor_if_available "vim" "Vim"
+  __add_editor_if_available "code" "VS Code"
+}
+
 __version() {
   echo
   echo "$PROJECT_NAME $PROJECT_VERSION built on $PROJECT_RELEASE_DATE"
@@ -119,6 +133,7 @@ __write_config() {
 __logo
 __version
 __is_update_available
+__set_editors
 
 __folder_exists "$PROJECT_CONFIG_FOLDER"
 if [[ 0 -eq $? ]]; then

@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog], and this project adheres to
 - Config folder check before getopts.
 - Config file check before getopts.
 - Config file read before getopts.
+- Atom, Sublime Text, Vim and VS Code as available text editors.
 
 ### Updated
 

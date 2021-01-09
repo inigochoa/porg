@@ -37,7 +37,7 @@ project2=/path/to/project2
 ```
 
 > Although it is possible to modify the settings by hand, we recommend using the
-> available porg options.
+> [available porg options].
 
 ## :man_technologist: Usage
 
@@ -45,6 +45,7 @@ project2=/path/to/project2
 
 | Option | Action |
 |--------|--------|
+| -c     | Configure porg |
 | -h     | Print help message |
 
 ## Contributing
@@ -66,4 +67,5 @@ donation to its creators.
 [license]: LICENSE.md
 [Contributor Covenant]: https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg?style=flat-square
 [Code of Conduct]: CODE_OF_CONDUCT.md
+[available porg options]: #available-options
 [Contributing]: CONTRIBUTING.md

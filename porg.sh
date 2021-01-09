@@ -13,10 +13,12 @@ declare -A EDITORS
 declare -A PROJECTS
 
 BC_CLEAR=$'\e[49m'
+BC_GREEN=$'\e[42m'
 BC_RED=$'\e[101m'
 BC_YELLOW=$'\e[103m'
 EOL_CL=$'\x1B[K'
 TC_BLACK=$'\e[30m'
+TC_BLUE=$'\e[34m'
 TC_GREEN=$'\e[32m'
 TC_CLEAR=$'\e[39m'
 TC_YELLOW=$'\e[33m'
@@ -25,6 +27,19 @@ __add_editor_if_available() {
   if [[ $(which "$1") ]]; then
     EDITORS["$2"]="$1"
   fi
+}
+
+__configure() {
+  echo
+
+  PS3="${TC_GREEN}Select the default editor: $TC_CLEAR"
+  __select "${!EDITORS[@]}"
+
+  BASE["editor"]="$option"
+
+  __write_config
+
+  __success_message "Successfully selected $option as the default editor"
 }
 
 __error_message() {
@@ -59,9 +74,10 @@ __get_latest_version() {
 
 __help() {
   echo
-  echo "Usage: $PROJECT_NAME [-h]"
+  echo "Usage: $PROJECT_NAME [-c|h]"
   echo
   echo "Options:"
+  echo "c     Configure $PROJECT_NAME"
   echo "h     Print this help message"
 }
 
@@ -103,11 +119,32 @@ __logo() {
   echo -e "$TC_CLEAR"
 }
 
+__select() {
+  select option; do
+    if [[ $REPLY == ?(-)+([0-9]) ]] && [ 1 -le "$REPLY" ] && [ "$REPLY" -le $# ]; then
+      break
+    else
+      __error_message "Please select a number between 1 and $#"
+    fi
+  done
+}
+
 __set_editors() {
   __add_editor_if_available "atom" "Atom"
   __add_editor_if_available "subl" "Sublime text"
   __add_editor_if_available "vim" "Vim"
   __add_editor_if_available "code" "VS Code"
+}
+
+__success_message() {
+  echo
+  echo -e "$BC_GREEN$EOL_CL"
+
+  for line in "$@"; do
+    echo -e "$TC_BLACK >>> $line$TC_CLEAR$EOL_CL"
+  done
+
+  echo -e "$EOL_CL$BC_CLEAR"
 }
 
 __version() {
@@ -154,8 +191,9 @@ while read line; do
   fi
 done < "$PROJECT_CONFIG_FILE"
 
-while getopts ":h" option; do
+while getopts ":ch" option; do
   case $option in
+    c) __configure && exit ;;
     h) __help && exit ;;
     \?) __error_message "Unknown option $@" && __help && exit ;;
   esac

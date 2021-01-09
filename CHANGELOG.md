@@ -13,10 +13,12 @@ The format is based on [Keep a Changelog], and this project adheres to
 - Config file check before getopts.
 - Config file read before getopts.
 - Atom, Sublime Text, Vim and VS Code as available text editors.
+- Config option to select editor.
 
 ### Updated
 
 - README with configuration information.
+- Help option with new config option information.
 
 ## [0.2.0] - 2021-01-09
 

@@ -82,6 +82,21 @@ __file_exists() {
   fi
 }
 
+__folder() {
+  __is_projects_empty
+
+  echo
+
+  PS3="${TC_GREEN}Select a project to redirect to its folder: $TC_CLEAR"
+  __select "${!PROJECTS[@]}"
+
+  echo
+  echo "Moving to $TC_BLUE$option$TC_CLEAR..."
+
+  cd "${PROJECTS[$option]}/"
+  $SHELL
+}
+
 __folder_exists() {
   if [[ -d "$1" ]]; then
     return 1
@@ -106,6 +121,7 @@ __help() {
   echo "Options:"
   echo "a     Add current path to $PROJECT_NAME as a project"
   echo "c     Configure $PROJECT_NAME"
+  echo "f     Move to the folder of a project"
   echo "h     Print this help message"
   echo "l     List added projects"
   echo "r     Remove a project from $PROJECT_NAME"
@@ -280,10 +296,11 @@ while read line; do
   fi
 done < "$PROJECT_CONFIG_FILE"
 
-while getopts ":achlr" option; do
+while getopts ":acfhlr" option; do
   case $option in
     a) __add && exit ;;
     c) __configure && exit ;;
+    f) __folder && exit ;;
     h) __help && exit ;;
     l) __list && exit ;;
     r) __remove && exit ;;

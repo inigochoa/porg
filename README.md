@@ -17,8 +17,8 @@ curl -s https://raw.githubusercontent.com/inigochoa/porg/master/installer.sh | s
 ```
 
 > Once the installation is finished, you are recommended to include an alias to
-> the porg binary. If you > don't add it, porg will work but the directory
-> change may have unexpected behavior.
+> the porg binary. If you don't add it, porg will work but the directory change
+> may have unexpected behavior ([see issue on stackexchange]).
 
 ## :wrench: Configuration
 
@@ -51,6 +51,7 @@ one to open in the selected editor.
 |--------|--------|
 | -a     | Add current path to porg as a project |
 | -c     | Configure porg |
+| -f     | Move to the folder of a project |
 | -h     | Print help message |
 | -l     | List added projects |
 | -r     | Remove a project from porg |
@@ -76,5 +77,6 @@ donation to its creators.
 [license]: LICENSE.md
 [Contributor Covenant]: https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg?style=flat-square
 [Code of Conduct]: CODE_OF_CONDUCT.md
+[see issue on stackexchange]: https://unix.stackexchange.com/questions/27139/script-to-change-current-directory-cd-pwd#comment946206_278080
 [available porg options]: #available-options
 [Contributing]: CONTRIBUTING.md

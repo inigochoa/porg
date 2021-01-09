@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog], and this project adheres to
 - Remove project option.
 - List projects option.
 - Default project open functionality.
+- Move to the folder of a project option.
 
 ### Updated
 
@@ -20,6 +21,12 @@ The format is based on [Keep a Changelog], and this project adheres to
 - Help option with new remove option information.
 - Help option with new list option information.
 - Help option with default functionality information.
+- Help Option with new move to folder option information.
+- README with stackexchange issue link related to directory change issue.
+
+### Fixed
+
+- Alias message in installer.
 
 ## [0.3.0] - 2021-01-09
 

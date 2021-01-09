@@ -7,6 +7,14 @@ The format is based on [Keep a Changelog], and this project adheres to
 
 ## [Unreleased]
 
+### Added
+
+- Add project option.
+
+### Updated
+
+- Help option with new add option information.
+
 ## [0.3.0] - 2021-01-09
 
 ### Added

@@ -1,5 +1,6 @@
 # porg
 
+[![GitHub release badge]][release]
 [![GitHub license badge]][license]
 [![Contributor Covenant]][Code of Conduct]
 
@@ -45,6 +46,7 @@ project2=/path/to/project2
 
 | Option | Action |
 |--------|--------|
+| -a     | Add current path to porg as a project |
 | -c     | Configure porg |
 | -h     | Print help message |
 
@@ -63,6 +65,8 @@ donation to its creators.
     <img src="https://cdn.buymeacoffee.com/buttons/v2/arial-red.png" alt="Buy Me A Coffee"  height="60" width="217">
 </a>
 
+[GitHub release badge]: https://img.shields.io/github/v/release/inigochoa/porg?style=flat-square
+[release]: https://github.com/inigochoa/porg/releases/latest
 [GitHub license badge]: https://img.shields.io/github/license/inigochoa/porg?style=flat-square
 [license]: LICENSE.md
 [Contributor Covenant]: https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg?style=flat-square

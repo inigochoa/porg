@@ -23,6 +23,31 @@ TC_GREEN=$'\e[32m'
 TC_CLEAR=$'\e[39m'
 TC_YELLOW=$'\e[33m'
 
+__add() {
+  local path="$(pwd)"
+
+  echo
+  echo "Adding path $TC_BLUE$path$TC_CLEAR to $PROJECT_NAME"
+
+  while : ; do
+    read -p "${TC_GREEN}Give the project a name: $TC_CLEAR" name
+
+    if [[ -z "$name" ]]; then
+      __error_message "Name cannot be empty"
+    elif [[ -v "PROJECTS[$name]" ]]; then
+      __error_message "Name $name already exists and points to ${PROJECTS[$name]}"
+    else
+      break
+    fi
+  done
+
+  PROJECTS[$name]="$path"
+
+  __write_config
+
+  __success_message "$name has been added to $PROJECT_NAME"
+}
+
 __add_editor_if_available() {
   if [[ $(which "$1") ]]; then
     EDITORS["$2"]="$1"
@@ -74,9 +99,10 @@ __get_latest_version() {
 
 __help() {
   echo
-  echo "Usage: $PROJECT_NAME [-c|h]"
+  echo "Usage: $PROJECT_NAME [-a|c|h]"
   echo
   echo "Options:"
+  echo "a     Add current path to $PROJECT_NAME as a project"
   echo "c     Configure $PROJECT_NAME"
   echo "h     Print this help message"
 }
@@ -191,8 +217,9 @@ while read line; do
   fi
 done < "$PROJECT_CONFIG_FILE"
 
-while getopts ":ch" option; do
+while getopts ":ach" option; do
   case $option in
+    a) __add && exit ;;
     c) __configure && exit ;;
     h) __help && exit ;;
     \?) __error_message "Unknown option $@" && __help && exit ;;

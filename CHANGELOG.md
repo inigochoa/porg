@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog], and this project adheres to
 
 - Config folder check before getopts.
 - Config file check before getopts.
+- Config file read before getopts.
 
 ## [0.2.0] - 2021-01-09
 

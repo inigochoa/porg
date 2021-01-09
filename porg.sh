@@ -130,6 +130,15 @@ if [[ 0 -eq $? ]]; then
   __write_config
 fi
 
+while read line; do
+  if [[ $line =~ ^"["(.+)"]"$ ]]; then
+    arrname=${BASH_REMATCH[1]}
+    declare -A $arrname
+  elif [[ $line =~ ^(.*)"="(.*) ]]; then
+    declare $arrname["${BASH_REMATCH[1]}"]="${BASH_REMATCH[2]}"
+  fi
+done < "$PROJECT_CONFIG_FILE"
+
 while getopts ":h" option; do
   case $option in
     h) __help && exit ;;

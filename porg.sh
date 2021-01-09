@@ -105,6 +105,7 @@ __help() {
   echo "a     Add current path to $PROJECT_NAME as a project"
   echo "c     Configure $PROJECT_NAME"
   echo "h     Print this help message"
+  echo "l     List added projects"
   echo "r     Remove a project from $PROJECT_NAME"
 }
 
@@ -142,6 +143,17 @@ __is_update_available() {
   fi
 }
 
+__list() {
+  local project_count=${#PROJECTS[@]}
+
+  echo
+  echo "You have $TC_BLUE$project_count$TC_CLEAR $(__plural "project" $project_count) saved in $PROJECT_NAME"
+
+  for project in "${!PROJECTS[@]}"; do
+    printf "%-8s\n" "${project}"
+  done | column
+}
+
 __logo() {
   echo -e "$TC_GREEN"
   echo -e "  _____    ____   _____    _____  "
@@ -151,6 +163,14 @@ __logo() {
   echo -e " | |     | |__| || | \ \ | |__| | "
   echo -e " |_|      \____/ |_|  \_\ \_____| "
   echo -e "$TC_CLEAR"
+}
+
+__plural() {
+  if [ $2 -eq 1 -o $2 -eq -1 ]; then
+    echo ${1}
+  else
+    echo ${1}s
+  fi
 }
 
 __remove() {
@@ -245,11 +265,12 @@ while read line; do
   fi
 done < "$PROJECT_CONFIG_FILE"
 
-while getopts ":achr" option; do
+while getopts ":achlr" option; do
   case $option in
     a) __add && exit ;;
     c) __configure && exit ;;
     h) __help && exit ;;
+    l) __list && exit ;;
     r) __remove && exit ;;
     \?) __error_message "Unknown option $@" && __help && exit ;;
   esac

@@ -19,7 +19,27 @@ curl -s https://raw.githubusercontent.com/inigochoa/porg/master/installer.sh | s
 > the porg binary. If you > don't add it, porg will work but the directory
 > change may have unexpected behavior.
 
-## Usage
+## :wrench: Configuration
+
+The settings are stored in the .porg folder inside the user's home. Every time
+the porg command is run, the configuration is checked for existence. If it is
+not found, a new one will be created.
+
+The structure of the configuration file is as follows:
+
+```text
+[BASE]
+editor=SELECTED EDITOR
+
+[PROJECTS]
+project1=/path/to/project1
+project2=/path/to/project2
+```
+
+> Although it is possible to modify the settings by hand, we recommend using the
+> available porg options.
+
+## :man_technologist: Usage
 
 ### Available options
 

@@ -42,6 +42,9 @@ project2=/path/to/project2
 
 ## :man_technologist: Usage
 
+When no option is passed, porg will show the list of projects to choose which
+one to open in the selected editor.
+
 ### Available options
 
 | Option | Action |

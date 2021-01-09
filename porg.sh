@@ -101,6 +101,8 @@ __help() {
   echo
   echo "Usage: $PROJECT_NAME [-a|c|h|r]"
   echo
+  echo "When no option is passed, $PROJECT_NAME will show the list of projects to choose which one to open in the selected editor."
+  echo
   echo "Options:"
   echo "a     Add current path to $PROJECT_NAME as a project"
   echo "c     Configure $PROJECT_NAME"
@@ -163,6 +165,19 @@ __logo() {
   echo -e " | |     | |__| || | \ \ | |__| | "
   echo -e " |_|      \____/ |_|  \_\ \_____| "
   echo -e "$TC_CLEAR"
+}
+
+__open() {
+  __is_projects_empty
+
+  echo
+  PS3="${TC_GREEN}Select a project to open with $TC_YELLOW${BASE[editor]}$TC_CLEAR: $TC_CLEAR"
+  __select "${!PROJECTS[@]}"
+
+  echo
+  echo "Opening $TC_BLUE$option$TC_CLEAR with $TC_YELLOW${BASE[editor]}$TC_CLEAR..."
+
+  eval ${EDITORS[${BASE[editor]}]} ${PROJECTS[$option]}
 }
 
 __plural() {
@@ -275,3 +290,5 @@ while getopts ":achlr" option; do
     \?) __error_message "Unknown option $@" && __help && exit ;;
   esac
 done
+
+__open

@@ -12,12 +12,14 @@ The format is based on [Keep a Changelog], and this project adheres to
 - Add project option.
 - Remove project option.
 - List projects option.
+- Default project open functionality.
 
 ### Updated
 
 - Help option with new add option information.
 - Help option with new remove option information.
 - Help option with new list option information.
+- Help option with default functionality information.
 
 ## [0.3.0] - 2021-01-09
 

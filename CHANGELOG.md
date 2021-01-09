@@ -10,10 +10,12 @@ The format is based on [Keep a Changelog], and this project adheres to
 ### Added
 
 - Add project option.
+- Remove project option.
 
 ### Updated
 
 - Help option with new add option information.
+- Help option with new remove option information.
 
 ## [0.3.0] - 2021-01-09
 

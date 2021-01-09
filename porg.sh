@@ -99,12 +99,13 @@ __get_latest_version() {
 
 __help() {
   echo
-  echo "Usage: $PROJECT_NAME [-a|c|h]"
+  echo "Usage: $PROJECT_NAME [-a|c|h|r]"
   echo
   echo "Options:"
   echo "a     Add current path to $PROJECT_NAME as a project"
   echo "c     Configure $PROJECT_NAME"
   echo "h     Print this help message"
+  echo "r     Remove a project from $PROJECT_NAME"
 }
 
 __info_message() {
@@ -116,6 +117,13 @@ __info_message() {
   done
 
   echo -e "$EOL_CL$BC_CLEAR"
+}
+
+__is_projects_empty() {
+  if [ "0" == "${#PROJECTS[@]}" ]; then
+    __error_message "There are no projects saved in $PROJECT_NAME"
+    exit 1
+  fi
 }
 
 __is_update_available() {
@@ -143,6 +151,26 @@ __logo() {
   echo -e " | |     | |__| || | \ \ | |__| | "
   echo -e " |_|      \____/ |_|  \_\ \_____| "
   echo -e "$TC_CLEAR"
+}
+
+__remove() {
+  __is_projects_empty
+
+  echo
+  PS3="${TC_GREEN}Select project to remove from $PROJECT_NAME: $TC_CLEAR"
+  __select "${!PROJECTS[@]}"
+
+  echo
+  read -p "${TC_YELLOW}Do you confirm removing $option from $PROJECT_NAME?$TC_CLEAR (y/n) " -n 1 -r
+  echo
+
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    unset PROJECTS[$option]
+
+    __write_config
+
+    __success_message "$option removed from $PROJECT_NAME"
+  fi
 }
 
 __select() {
@@ -217,11 +245,12 @@ while read line; do
   fi
 done < "$PROJECT_CONFIG_FILE"
 
-while getopts ":ach" option; do
+while getopts ":achr" option; do
   case $option in
     a) __add && exit ;;
     c) __configure && exit ;;
     h) __help && exit ;;
+    r) __remove && exit ;;
     \?) __error_message "Unknown option $@" && __help && exit ;;
   esac
 done

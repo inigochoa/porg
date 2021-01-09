@@ -49,6 +49,7 @@ project2=/path/to/project2
 | -a     | Add current path to porg as a project |
 | -c     | Configure porg |
 | -h     | Print help message |
+| -r     | Remove a project from porg |
 
 ## Contributing
 

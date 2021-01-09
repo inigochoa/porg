@@ -1,5 +1,6 @@
 #!/bin/bash
 
+PROJECT_CONFIG_FOLDER="$HOME/.$PROJECT_NAME"
 PROJECT_NAME="porg"
 PROJECT_RAW_PATH="https://raw.githubusercontent.com/inigochoa/$PROJECT_NAME"
 PROJECT_RELEASE_DATE="Jan 09 2021"
@@ -20,6 +21,14 @@ __error_message() {
   echo "$BC_RED$EOL_CL"
   echo -e " >>> $1$EOL_CL"
   echo "$EOL_CL$BC_CLEAR"
+}
+
+__folder_exists() {
+  if [[ -d "$1" ]]; then
+    return 1
+  else
+    return 0
+  fi
 }
 
 __get_latest_version() {
@@ -83,6 +92,11 @@ __version() {
 __logo
 __version
 __is_update_available
+
+__folder_exists "$PROJECT_CONFIG_FOLDER"
+if [[ 0 -eq $? ]]; then
+  mkdir -p "$PROJECT_CONFIG_FOLDER"
+fi
 
 while getopts ":h" option; do
   case $option in

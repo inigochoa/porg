@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog], and this project adheres to
 ### Added
 
 - Config folder check before getopts.
+- Config file check before getopts.
 
 ## [0.2.0] - 2021-01-09
 

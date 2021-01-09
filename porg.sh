@@ -2,10 +2,14 @@
 
 PROJECT_NAME="porg"
 PROJECT_CONFIG_FOLDER="$HOME/.$PROJECT_NAME"
+PROJECT_CONFIG_FILE="$PROJECT_CONFIG_FOLDER/config"
 PROJECT_RAW_PATH="https://raw.githubusercontent.com/inigochoa/$PROJECT_NAME"
 PROJECT_RELEASE_DATE="Jan 09 2021"
 PROJECT_VERSION="0.2.0"
 LATEST_VERSION=""
+
+declare -A BASE
+declare -A PROJECTS
 
 BC_CLEAR=$'\e[49m'
 BC_RED=$'\e[101m'
@@ -21,6 +25,14 @@ __error_message() {
   echo "$BC_RED$EOL_CL"
   echo -e " >>> $1$EOL_CL"
   echo "$EOL_CL$BC_CLEAR"
+}
+
+__file_exists() {
+  if [[ -f "$1" ]]; then
+    return 1
+  else
+    return 0
+  fi
 }
 
 __folder_exists() {
@@ -89,6 +101,21 @@ __version() {
   echo "$PROJECT_NAME $PROJECT_VERSION built on $PROJECT_RELEASE_DATE"
 }
 
+__write_config() {
+  printf "[BASE]\n" > "$PROJECT_CONFIG_FILE"
+
+  for index in "${!BASE[@]}"; do
+    printf "%s=%s\n" "$index" "${BASE[$index]}" >> "$PROJECT_CONFIG_FILE"
+  done
+
+  printf "\n" >> "$PROJECT_CONFIG_FILE"
+  printf "[PROJECTS]\n" >> "$PROJECT_CONFIG_FILE"
+
+  for index in "${!PROJECTS[@]}"; do
+    printf "%s=%s\n" "$index" "${PROJECTS[$index]}" >> "$PROJECT_CONFIG_FILE"
+  done
+}
+
 __logo
 __version
 __is_update_available
@@ -96,6 +123,11 @@ __is_update_available
 __folder_exists "$PROJECT_CONFIG_FOLDER"
 if [[ 0 -eq $? ]]; then
   mkdir -p "$PROJECT_CONFIG_FOLDER"
+fi
+
+__file_exists "$PROJECT_CONFIG_FILE"
+if [[ 0 -eq $? ]]; then
+  __write_config
 fi
 
 while getopts ":h" option; do

@@ -5,7 +5,7 @@ PROJECT_CONFIG_FOLDER="$HOME/.$PROJECT_NAME"
 PROJECT_CONFIG_FILE="$PROJECT_CONFIG_FOLDER/config"
 PROJECT_RAW_PATH="https://raw.githubusercontent.com/inigochoa/$PROJECT_NAME"
 PROJECT_RELEASE_DATE="Jan 09 2021"
-PROJECT_VERSION="0.4.0"
+PROJECT_VERSION="0.4.1"
 LATEST_VERSION=""
 
 declare -A BASE
@@ -77,9 +77,9 @@ __error_message() {
 __file_exists() {
   if [[ -f "$1" ]]; then
     return 1
-  else
-    return 0
   fi
+
+  return 0
 }
 
 __folder() {
@@ -100,9 +100,9 @@ __folder() {
 __folder_exists() {
   if [[ -d "$1" ]]; then
     return 1
-  else
-    return 0
   fi
+
+  return 0
 }
 
 __get_latest_version() {
@@ -141,8 +141,11 @@ __info_message() {
 __is_projects_empty() {
   if [ "0" == "${#PROJECTS[@]}" ]; then
     __error_message "There are no projects saved in $PROJECT_NAME"
-    exit 1
+
+    return 1
   fi
+
+  return 0
 }
 
 __is_update_available() {
@@ -185,6 +188,9 @@ __logo() {
 
 __open() {
   __is_projects_empty
+  if [[ 1 -eq $? ]]; then
+    return
+  fi
 
   echo
   PS3="${TC_GREEN}Select a project to open with $TC_YELLOW${BASE[editor]}$TC_CLEAR: $TC_CLEAR"
@@ -206,6 +212,9 @@ __plural() {
 
 __remove() {
   __is_projects_empty
+  if [[ 1 -eq $? ]]; then
+    return
+  fi
 
   echo
   PS3="${TC_GREEN}Select project to remove from $PROJECT_NAME: $TC_CLEAR"
@@ -296,15 +305,16 @@ while read line; do
   fi
 done < "$PROJECT_CONFIG_FILE"
 
+OPTIND=1
 while getopts ":acfhlr" option; do
   case $option in
-    a) __add && exit ;;
-    c) __configure && exit ;;
-    f) __folder && exit ;;
-    h) __help && exit ;;
-    l) __list && exit ;;
-    r) __remove && exit ;;
-    \?) __error_message "Unknown option $@" && __help && exit ;;
+    a) __add && return ;;
+    c) __configure && return ;;
+    f) __folder && return ;;
+    h) __help && return ;;
+    l) __list && return ;;
+    r) __remove && return ;;
+    \?) __error_message "Unknown option $@" && __help && return ;;
   esac
 done
 

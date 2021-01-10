@@ -65,7 +65,7 @@ __install() {
   chmod +x "$output_file"
   echo "$TC_GREEN[3]$TC_CLEAR $PROJECT_NAME is now installed. To start using it, type $TC_BLUE$PROJECT_NAME$TC_CLEAR on a command shell"
 
-  __info_message "To prevent unexpected behavior with directory changes when using $PROJECT_NAME, add the following line to your alias file:$EOL_CL\n$EOL_CL\n alias $PROJECT_NAME=\". $PROJECT_NAME\""
+  __info_message "To prevent unexpected behavior with directory changes when using $PROJECT_NAME, add the following line to your alias file:$EOL_CL\n$EOL_CL\n alias $PROJECT_NAME=\". $output_file\""
 }
 
 __get_latest_version

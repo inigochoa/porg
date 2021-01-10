@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog], and this project adheres to
 
 ## [Unreleased]
 
+### Fixed
+
+- Prompt exited after each command.
+
 ## [0.4.0] - 2021-01-09
 
 ### Added

@@ -7,6 +7,8 @@ The format is based on [Keep a Changelog], and this project adheres to
 
 ## [Unreleased]
 
+## [0.4.1] - 2021-01-10
+
 ### Added
 
 - Folder validation on move to the folder option.
@@ -83,7 +85,8 @@ need to address.
 
 [Keep a Changelog]: https://keepachangelog.com/en/1.0.0/
 [Semantic Versioning]: https://semver.org/spec/v2.0.0.html
-[Unreleased]: https://github.com/inigochoa/porg/compare/0.4.0...HEAD
+[Unreleased]: https://github.com/inigochoa/porg/compare/0.4.1...HEAD
+[0.4.1]: https://github.com/inigochoa/porg/compare/0.4.0...0.4.1
 [0.4.0]: https://github.com/inigochoa/porg/compare/0.3.0...0.4.0
 [0.3.0]: https://github.com/inigochoa/porg/compare/0.2.0...0.3.0
 [0.2.0]: https://github.com/inigochoa/porg/compare/0.1.0...0.2.0

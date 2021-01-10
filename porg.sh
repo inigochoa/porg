@@ -114,7 +114,7 @@ __get_latest_version() {
 
 __help() {
   echo
-  echo "Usage: $PROJECT_NAME [-a|c|h|r]"
+  echo "Usage: $PROJECT_NAME [-a|c|f|h|l|r]"
   echo
   echo "When no option is passed, $PROJECT_NAME will show the list of projects to choose which one to open in the selected editor."
   echo

@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog], and this project adheres to
 ### Fixed
 
 - Prompt exited after each command.
+- Help option with missing options info.
 
 ## [0.4.0] - 2021-01-09
 

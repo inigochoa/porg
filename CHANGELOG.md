@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog], and this project adheres to
 
 ## [Unreleased]
 
+### Added
+
+- Folder validation on move to the folder option.
+
 ### Fixed
 
 - Prompt exited after each command.

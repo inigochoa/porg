@@ -90,6 +90,13 @@ __folder() {
   PS3="${TC_GREEN}Select a project to redirect to its folder: $TC_CLEAR"
   __select "${!PROJECTS[@]}"
 
+  __folder_exists "${PROJECTS[$option]}/"
+  if [[ 0 -eq $? ]]; then
+    __error_message "Folder ${PROJECTS[$option]}/ does not exist"
+
+    return
+  fi
+
   echo
   echo "Moving to $TC_BLUE$option$TC_CLEAR..."
 
